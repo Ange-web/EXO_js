@@ -1,20 +1,32 @@
 function demanderNombre() {
-    let givenNumber = parseFloat(prompt("Veuillez entrer un nombre :"));
-    return givenNumber;
+    return parseFloat(prompt("Veuillez entrer un nombre :"));
 }
-
-let givenNumber=demanderNombre()
 
 function didIwin(givenNumber){
-    if(givenNumber === 22){
-        alert("Bravo ! Vous avez deviné le nombre")
+    const nombretr = 22;
+    if(givenNumber === nombretr){
+        return true;
     }
-    else if (givenNumber<22){
-        alert("plus grand")
+    else if (givenNumber<nombretr){
+        alert("plus grand");
     }
-    else if(givenNumber>22){
-        alert("plus petit")
+    else if(givenNumber>nombretr){
+        alert("plus petit");
     }
+    return false;
 }
 
-didIwin(givenNumber);
+function gameplay(){
+    let win = false
+    
+    while(!win){
+        let givenNumber = demanderNombre()
+        win= didIwin(givenNumber);
+
+        if(win){
+            alert("bravo, bien joué")
+        }
+   }
+}
+
+gameplay()
