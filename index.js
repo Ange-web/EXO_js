@@ -1,32 +1,41 @@
-function demanderNombre() {
-    return parseFloat(prompt("Veuillez entrer un nombre :"));
+function askForNumberToGuess() {
+    let numberToGuess;
+    do {
+        numberToGuess = parseInt(prompt("Joueur 1, entrez un nombre à deviner entre 0 et 50 :"), 10);
+    } while (isNaN(numberToGuess) || numberToGuess < 0 || numberToGuess > 50);
+    return numberToGuess;
 }
 
-function didIwin(givenNumber){
-    const nombretr = 22;
-    if(givenNumber === nombretr){
+function askForNumber() {
+    return parseInt(prompt("Joueur 2, entrez un nombre :"), 10);
+}
+
+function didIWin(givenNumber, numberToGuess) {
+    if (givenNumber === numberToGuess) {
         return true;
+    } else {
+        return false;
     }
-    else if (givenNumber<nombretr){
-        alert("plus grand");
-    }
-    else if(givenNumber>nombretr){
-        alert("plus petit");
-    }
-    return false;
 }
 
-function gameplay(){
-    let win = false
-    
-    while(!win){
-        let givenNumber = demanderNombre()
-        win= didIwin(givenNumber);
+function gamePlay() {
+    let numberToGuess = askForNumberToGuess();
+    let hasWon = false;
 
-        if(win){
-            alert("bravo, bien joué")
+    while (!hasWon) {
+        let givenNumber = askForNumber();
+        hasWon = didIWin(givenNumber, numberToGuess);
+
+        if (hasWon) {
+            alert("Bravo Joueur 2 ! Vous avez deviné le nombre");
+        } else {
+            if (givenNumber < numberToGuess) {
+                alert("Plus grand");
+            } else {
+                alert("Plus petit");
+            }
         }
-   }
+    }
 }
 
-gameplay()
+gamePlay();
